@@ -1,0 +1,171 @@
+1. Clean code is a practice of writing code with readability, ease of maintenance and simplicity.
+By practicing writing clean code, other people who need to use your code find it's easier to read and 
+maintain the code.  
+
+2. 
+
+One example I can think of would be a temperature control system in a warehouse or data center.
+If the program is miscalculated and the temperature is not maintained in a desired temperature, 
+the product would get distorted. 
+
+
+3. 
+
+1). Function, parameter and variable names should be more descriptive 
+2). Erase unnecessary comments for those which are self-explanatory 
+ 
+
+FUNCTION convertTemperatureType(temperature, type)               
+ IF type = "F" THEN               
+ SET newTemp to (temperature−32) * (5/9)       // Formula to convert degrees fahrenheit to celsius
+ PRINT newTemp                       
+ ELSE IF type = "C" THEN          
+ SET newTemp to temperature * 1.8000 + 32.00   // Formula to convert degrees celsius to fahrenheit
+ PRINT newTemp                       
+ END IF
+END FUNCTION
+
+
+4. 
+
+1) PRINT percentage should be nested inside of the first if operation bloc 
+
+FUNCTION calcPercent(sum, total)
+ IF NOT(total = 0) THEN
+     SET percentage to sum / total * 100 AND PRINT percentage
+ ELSE
+   PRINT "Sorry, cannot divide by 0"
+ END IF
+
+END FUNCTION
+
+5. a) 
+
+FUNCTION checkPaymentType(subTotal, discountRate, paymentType)
+   PRINT "Your total due is: " + calculateChange(subTotal, discountRate)
+
+   IF paymentType = 'CASH' THEN
+       CALL getPayment RETURNING amount
+       PRINT "Change due: " + amount - calculateChange(subTotal, discountRate)
+   ELSE IF paymentType = 'CREDIT CARD' THEN
+       CALL getPayment RETURNING amount
+       PRINT "Your credit card has been charged: " + calculateChange(subTotal, discountRate)
+   END IF
+END FUNCTION 
+
+FUNCTION calculateChange(subTotal, discountRate) 
+    RETURN subTotal * discountRate + (subTotal * tax) 
+
+END FUNCTION 
+
+
+b) 
+
+FUNCTION checkoutBook(book, guest)
+    IF guest.accountActive AND NOT(guest.hasOverdueBooks) THEN
+        IF guest.outstandingFees = 0 THEN
+            APPEND book to guest.books
+            SET book.status to "Checked Out"
+            PRINT "Your books have been issued."
+        END IF 
+    ELSE
+        PRINT "Unable to check out book."
+    END IF
+END FUNCTION 
+
+c) 
+
+CLASS displayBalance
+    FUNCTION displayBalance
+        PRINT balance
+    END FUNCTION 
+
+ END CLASS
+
+
+CLASS calculateBalance
+    FUNCTION deposit(amount)
+        SET balance to balance + amount
+    END FUNCTION
+
+    FUNCTION withdraw(amount)
+        IF balance > amount THEN
+            SET balance to balance - amount
+        END IF
+    END FUNCTION 
+
+END CLASS
+
+
+CLASS provideCreditCard 
+    FUNCTION creditCardOffer
+        IF NOT(customer.hasCreditCard) THEN
+            CALL offerCreditCard
+        END
+    END FUNCTION 
+
+END CLASS 
+
+
+CLASS provideCheckingAccount
+    FUNCTION checkStatus
+        IF NOT(customer.hasCheckingAccount) THEN
+            CALL offerCheckingAccount
+        END
+    END FUNCTION
+
+END CLASS 
+
+
+6. 
+
+FUNCTION isPerfectSquare(array)
+    SET sum to SUM array 
+    SET sqrtNum to SQRT sum  
+    IF (sqrtNum % 1 !== 0) 
+        RETURN sum 
+    ELSE 
+        RETURN sqrtNum 
+    END IF 
+
+END FUNCTION  
+
+function isPerfectSqrt(arr){
+    var sum = arr.reduce((total, item) => total + item, 0);
+    var sqrtNum  = Math.sqrt(sum);
+    if(sqrtNum  % 1 !== 0){
+            return sum;
+        } else {
+            return sqrtNum;
+     }
+}
+
+7. 
+
+FUNCTION isDuplicate(arr) 
+    FOR counterFirst = 0 to length of arr STEP 1 
+        FOR counterSecond = 1 to length of arr STEP 1
+            IF counterFirst !== counterSecond 
+            IF arr[counterFirst] === arr[counterSecond] 
+                RETURN true 
+            ELSE 
+                RETURN false
+            END IF 
+        
+
+function isDuplicate(arr){
+		for(let first = 0; arr.length > first; first++){
+			for(let second = 1; arr.length > second; second++){
+				if(first !== second && arr[first] === arr[second]){
+                	return true; 
+                } 
+			}
+		}
+	return false;
+}
+
+
+    
+
+
+
